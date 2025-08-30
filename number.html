@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>数字豆知識</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    #number {
+      width: 300px;
+    }
+
+    #numberTrivia {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<main class="container">
+  <h1>数字豆知識</h1>
+  
+  <div id="number">
+    <h2 id="numberName"></h2>
+    <span id="numberTrivia"></span>
+  </div>
+</main>
+
+<script>
+  let numberTrivia = document.getElementById('numberTrivia');
+  let numberName = Math.floor(Math.random() * 1000) + 1;
+ console.log(numberName);
+
+  fetch(`http://numbersapi.com/${numberName}`)
+    .then(function (response) {
+      // レスポンスをコンソールに出力
+      console.log(response);
+
+      // JSONデータを取得して次の .then() に渡す
+      return response.text()
+    })
+    .then(function(data) {
+      // JSONデータをコンソールに出力
+      console.log(data);
+      numberName.textContent = data.number;
+
+      fetch(`http://numbersapi.com/${numberName}/trivia`)
+      .then(function (response) {
+        console.log(response);
+        return response.text();
+        }).then(function(data) {
+            console.log(data);
+            numberTrivia.textContent = data;
+        })
+    })
+    .catch(function(error) {
+      // エラーが発生した場合はコンソールに出力
+      console.error(`エラーが発生しました:${error}`);
+    });
+
+
+</script>
+
+</body>
+</html>
