@@ -29,7 +29,7 @@
   let numberName = Math.floor(Math.random() * 1000) + 1;
  console.log(numberName);
 
-  fetch(`http://numbersapi.com/${numberName}`)
+  fetch(`https://numbersapi-proxy.hogelog.workers.dev/${numberName}`)
     .then(function (response) {
       // レスポンスをコンソールに出力
       console.log(response);
@@ -42,7 +42,7 @@
       console.log(data);
       numberName.textContent = data.number;
 
-      fetch(`http://numbersapi-proxy.hogelog.workers.dev/${numberName}/trivia`)
+      fetch(`https://numbersapi-proxy.hogelog.workers.dev/${numberName}/trivia`)
       .then(function (response) {
         console.log(response);
         return response.text();
