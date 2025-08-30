@@ -42,7 +42,7 @@
       console.log(data);
       numberName.textContent = data.number;
 
-      fetch(`http://numbersapi.com/${numberName}/trivia`)
+      fetch(`http://numbersapi-proxy.hogelog.workers.dev/${numberName}/trivia`)
       .then(function (response) {
         console.log(response);
         return response.text();
